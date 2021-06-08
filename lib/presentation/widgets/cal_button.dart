@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:simple_calculator/logic/cubits/calculation/calculation_cubit.dart';
 
 class CalButton extends StatefulWidget {
   final String buttonText;
@@ -34,18 +36,16 @@ class _CalButtonState extends State<CalButton>
     Size _size = MediaQuery.of(context).size;
     return GestureDetector(
       onTapDown: (v) {
-        print(_buttonController.value);
+        BlocProvider.of<CalculationCubit>(context)
+            .displayTexts(widget.buttonText);
         _buttonController.forward();
-        print('kk');
       },
       onTapUp: (v) {
-        print(_buttonController.value);
         _buttonController.reverse();
       },
       child: Transform.scale(
         scale: 1.0 - _buttonController.value,
         child: Container(
-          //alignment: Alignment.center,
           margin: EdgeInsets.all(5.0),
           height: _size.width * 0.20,
           width: _size.width * 0.20,
@@ -54,12 +54,15 @@ class _CalButtonState extends State<CalButton>
               //intensity: 0.5,
               surfaceIntensity: 1,
               depth: 8,
-              color: Colors.white,
+              color: widget.buttonText == '=' ? Colors.green : Colors.white,
             ),
             child: Center(
               child: Text(
                 widget.buttonText,
-                style: TextStyle(fontSize: 25.0),
+                style: TextStyle(
+                  fontSize: 30.0,
+                  color: widget.buttonText == '=' ? Colors.white : Colors.black,
+                ),
               ),
             ),
           ),

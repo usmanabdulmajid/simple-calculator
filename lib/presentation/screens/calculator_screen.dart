@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:simple_calculator/logic/cubits/calculation/calculation_cubit.dart';
 import 'package:simple_calculator/presentation/widgets/cal_button.dart';
 
 class CalculatorScreen extends StatelessWidget {
@@ -35,6 +37,24 @@ class CalculatorScreen extends StatelessWidget {
                   shadowLightColorEmboss: Colors.white,
                   depth: -5,
                   color: Colors.white,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Container(
+                      padding:
+                          EdgeInsets.only(top: 25.0, right: 5.0, left: 5.0),
+                      //height: 100,
+                      child: BlocBuilder<CalculationCubit, CalculationState>(
+                        builder: (context, state) {
+                          return Text(
+                            state.calcValues,
+                            style: TextStyle(fontSize: 30),
+                          );
+                        },
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),
