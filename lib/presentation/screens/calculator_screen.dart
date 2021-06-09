@@ -72,7 +72,7 @@ class CalculatorScreen extends StatelessWidget {
                     buttonText: '%',
                   ),
                   CalButton(
-                    buttonText: ')',
+                    buttonText: '⌫',
                   ),
                   CalButton(
                     buttonText: '+',
@@ -111,7 +111,7 @@ class CalculatorScreen extends StatelessWidget {
                     buttonText: '6',
                   ),
                   CalButton(
-                    buttonText: 'X',
+                    buttonText: 'x',
                   ),
                 ],
               ),
@@ -129,7 +129,7 @@ class CalculatorScreen extends StatelessWidget {
                     buttonText: '3',
                   ),
                   CalButton(
-                    buttonText: '/',
+                    buttonText: '÷',
                   ),
                 ],
               ),

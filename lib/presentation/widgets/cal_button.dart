@@ -31,13 +31,22 @@ class _CalButtonState extends State<CalButton>
     super.dispose();
   }
 
+  // check if the string contains only numbers
+  bool isNumeric(String str) {
+    RegExp _numeric = RegExp(r'^-?[0-9]+$|\+|-|÷|x|\.|%');
+    return _numeric.hasMatch(str);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
     return GestureDetector(
       onTapDown: (v) {
-        BlocProvider.of<CalculationCubit>(context)
-            .displayTexts(widget.buttonText);
+        if (isNumeric(widget.buttonText)) {
+          BlocProvider.of<CalculationCubit>(context)
+              .displayTexts(widget.buttonText);
+        }
+
         _buttonController.forward();
       },
       onTapUp: (v) {
