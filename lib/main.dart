@@ -28,23 +28,29 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text('test'),
         ),
         body: Center(
-          child: CalButton(),
-        ));
+            child: TextField(
+          cursorColor: Colors.green,
+          textAlign: TextAlign.end,
+          controller: controller,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+          ),
+          autofocus: true,
+          //focusNode: DisableFocusNode(),
+        )));
   }
 }

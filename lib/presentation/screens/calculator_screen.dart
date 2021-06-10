@@ -3,8 +3,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:simple_calculator/logic/cubits/calculation/calculation_cubit.dart';
 import 'package:simple_calculator/presentation/widgets/cal_button.dart';
+import 'package:simple_calculator/utils/disable_focusnode.dart';
 
-class CalculatorScreen extends StatelessWidget {
+class CalculatorScreen extends StatefulWidget {
+  @override
+  _CalculatorScreenState createState() => _CalculatorScreenState();
+}
+
+class _CalculatorScreenState extends State<CalculatorScreen> {
+  static TextEditingController controller = TextEditingController();
+
+  @override
+  void initState() {
+    controller.addListener(() {
+      //print(controller.selection.base.offset);
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
@@ -47,9 +63,19 @@ class CalculatorScreen extends StatelessWidget {
                       //height: 100,
                       child: BlocBuilder<CalculationCubit, CalculationState>(
                         builder: (context, state) {
-                          return Text(
-                            state.calcValues,
+                          var hold = state.calcValues;
+                          controller.text = hold;
+                          return TextField(
+                            cursorColor: Colors.green,
+                            cursorWidth: 5.0,
+                            textAlign: TextAlign.end,
                             style: TextStyle(fontSize: 30),
+                            controller: controller,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                            ),
+                            focusNode: DisableFocusNode(),
+                            onChanged: (value) {},
                           );
                         },
                       ),
