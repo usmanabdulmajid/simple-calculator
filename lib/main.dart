@@ -14,12 +14,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<CalculationCubit>(create: (context) => CalculationCubit())
+        BlocProvider<CalculationCubit>(
+            create: (context) =>
+                CalculationCubit(controller: TextEditingController()))
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.green,
         ),
         home: CalculatorScreen(),
       ),

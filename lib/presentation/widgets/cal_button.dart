@@ -46,6 +46,9 @@ class _CalButtonState extends State<CalButton>
           BlocProvider.of<CalculationCubit>(context)
               .displayTexts(widget.buttonText);
         }
+        if (widget.buttonText == '⌫') {
+          BlocProvider.of<CalculationCubit>(context).removeText();
+        }
 
         _buttonController.forward();
       },

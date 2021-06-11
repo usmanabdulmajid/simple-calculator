@@ -16,7 +16,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   @override
   void initState() {
     controller.addListener(() {
-      //print(controller.selection.base.offset);
+      print(controller.selection.base.offset);
     });
     super.initState();
   }
@@ -63,14 +63,16 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                       //height: 100,
                       child: BlocBuilder<CalculationCubit, CalculationState>(
                         builder: (context, state) {
-                          var hold = state.calcValues;
-                          controller.text = hold;
+                          // var hold = state.calcValues;
+                          // controller.text = hold;
+                          //state.controller.text = state.calcValues;
                           return TextField(
                             cursorColor: Colors.green,
-                            cursorWidth: 5.0,
+                            cursorWidth: 2.0,
+                            cursorRadius: Radius.circular(12),
                             textAlign: TextAlign.end,
                             style: TextStyle(fontSize: 30),
-                            controller: controller,
+                            controller: state.controller,
                             decoration: InputDecoration(
                               border: InputBorder.none,
                             ),
