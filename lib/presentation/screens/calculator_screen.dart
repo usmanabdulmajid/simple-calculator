@@ -76,7 +76,9 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                             ),
-                            focusNode: DisableFocusNode(),
+                            readOnly: true,
+                            showCursor: true,
+                            //focusNode: DisableFocusNode(),
                             onChanged: (value) {},
                           );
                         },
